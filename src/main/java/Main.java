@@ -11,15 +11,13 @@ public class Main {
 
     private static final int PORT = 8989;
     private static final String PATH = "pdfs";
-    private static final String WORD_TO_SEARCH = "бизнес";
+    private static final String WORD_TO_SEARCH = "риски";
 
     public static void main(String[] args) throws IOException {
 
         BooleanSearchEngine engine = new BooleanSearchEngine(new File(PATH));
 
         engine.search(WORD_TO_SEARCH)
-                .stream()
-                .sorted()
                 .forEach(System.out::println);
 
 

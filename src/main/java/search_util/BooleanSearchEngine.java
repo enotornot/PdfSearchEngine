@@ -9,6 +9,7 @@ import com.itextpdf.styledxmlparser.jsoup.select.Collector;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BooleanSearchEngine implements SearchEngine {
 
@@ -52,8 +53,12 @@ public class BooleanSearchEngine implements SearchEngine {
     public List<PageEntry> search(String word) {
         if (mapWithAllPages.containsKey(word.toLowerCase())) {
 
-            return mapWithAllPages.get(word.toLowerCase());
+            return mapWithAllPages.get(word.toLowerCase())
+                    .stream()
+                    .sorted()
+                    .collect(Collectors.toList());
         }
+        System.out.println("Ничего не найдено.");
         return Collections.emptyList();
     }
 }
